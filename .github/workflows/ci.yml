@@ -1,0 +1,73 @@
+# Integração contínua: valida o compose e executa lint, testes e build de cada app.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancela execuções antigas da mesma branch quando chega um novo push.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  compose:
+    name: Validar docker compose
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Criar .env a partir do exemplo
+        run: cp .env.example .env
+      - name: Validar docker-compose.yml
+        run: docker compose config -q
+
+  app:
+    name: ${{ matrix.app }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [api, web]
+    defaults:
+      run:
+        working-directory: apps/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Cada app só é verificada depois que tiver um package.json.
+      - name: Verificar se a app existe
+        id: existe
+        run: |
+          if [ -f package.json ]; then
+            echo "existe=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "existe=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        if: steps.existe.outputs.existe == 'true'
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/${{ matrix.app }}/package-lock.json
+
+      - name: Instalar dependências
+        if: steps.existe.outputs.existe == 'true'
+        run: npm ci
+
+      - name: Lint
+        if: steps.existe.outputs.existe == 'true'
+        run: npm run lint --if-present
+
+      - name: Testes
+        if: steps.existe.outputs.existe == 'true'
+        run: npm test --if-present
+
+      - name: Build
+        if: steps.existe.outputs.existe == 'true'
+        run: npm run build --if-present
