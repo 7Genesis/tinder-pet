@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+
+# Saída de build
+dist/
+build/
+coverage/
+
+# Variáveis de ambiente com segredos
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos de sistema e editores
+.DS_Store
+.idea/
+.vscode/
+
+# Dados locais dos containers
+.data/
