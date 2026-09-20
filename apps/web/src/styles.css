@@ -1,0 +1,82 @@
+/* Estilos globais do protótipo, pensados primeiro para telas de celular. */
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --muted: #78716c;
+  --border: #e7e5e4;
+  --accent: #e8590c;
+  --success-bg: #ebfbee;
+  --success-text: #2b8a3e;
+  --danger: #c92a2a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app { max-width: 420px; min-height: 100dvh; margin: 0 auto; display: flex; flex-direction: column; background: var(--bg); }
+.header { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); background: var(--surface); }
+.main { flex: 1; padding: 16px; overflow-x: hidden; }
+.nav { display: flex; justify-content: space-around; border-top: 1px solid var(--border); background: var(--surface); padding: 10px 0; position: sticky; bottom: 0; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 14px; }
+.nav a.active { color: var(--accent); font-weight: 600; }
+
+h1 { font-size: 24px; margin: 0 0 8px; }
+h2 { font-size: 18px; margin: 16px 0 8px; }
+p { line-height: 1.5; }
+.muted { color: var(--muted); font-size: 14px; }
+.empty { text-align: center; color: var(--muted); padding: 48px 0; }
+
+button, .button-link {
+  display: block; width: 100%; margin: 8px 0; padding: 12px; font: inherit; text-align: center; text-decoration: none;
+  color: var(--text); background: var(--surface); border: 1px solid var(--border); border-radius: 10px; cursor: pointer;
+}
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.link-button { width: auto; border: none; background: none; color: var(--accent); padding: 4px 0; margin: 4px auto; }
+
+.feed { display: flex; flex-direction: column; align-items: stretch; }
+.swipe-card { position: relative; touch-action: pan-y; user-select: none; cursor: grab; }
+.swipe-badge { position: absolute; top: 16px; z-index: 1; padding: 4px 12px; font-weight: 700; border: 2px solid; border-radius: 8px; background: var(--surface); }
+.swipe-badge-right { left: 16px; color: var(--success-text); }
+.swipe-badge-left { right: 16px; color: var(--danger); }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+.card-photo { position: relative; height: 240px; display: flex; align-items: center; justify-content: center; }
+.photo-pet { background: #fff3bf; }
+.photo-person { background: #d0ebff; }
+.photo-initial { font-size: 96px; font-weight: 600; color: rgba(0, 0, 0, 0.25); }
+.card-corner { position: absolute; top: 12px; right: 12px; }
+.card-body { padding: 12px 16px 16px; }
+.card-body h2 { margin: 0 0 4px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.chip { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: #f1f3f5; color: #495057; }
+.chip-success { background: var(--success-bg); color: var(--success-text); }
+
+.swipe-actions { display: flex; gap: 16px; }
+.action-left { color: var(--danger); border-color: var(--danger); }
+.action-right { color: var(--success-text); border-color: var(--success-text); }
+
+.overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.45); display: flex; align-items: center; justify-content: center; padding: 16px; z-index: 10; }
+.dialog { width: 100%; max-width: 380px; background: var(--surface); border-radius: 14px; padding: 16px; }
+.match-dialog { text-align: center; }
+
+.login button { margin: 6px 0; }
+
+.form label { display: block; margin: 12px 0 4px; font-size: 14px; }
+.form input[type='text'], .form input[type='number'], .form select, .form textarea { width: 100%; padding: 10px; font: inherit; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.form .check { display: flex; align-items: center; gap: 8px; margin: 8px 0; }
+.form fieldset { border: 1px solid var(--border); border-radius: 8px; margin: 12px 0; }
+.form .primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+.list-item { display: block; padding: 12px; margin: 8px 0; text-decoration: none; color: inherit; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+.messages { display: flex; flex-direction: column; gap: 6px; margin: 12px 0; }
+.bubble { max-width: 80%; padding: 8px 12px; border-radius: 14px; background: #f1f3f5; align-self: flex-start; }
+.bubble-mine { align-self: flex-end; background: #ffe8cc; }
+.stage-panel { padding: 12px; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
