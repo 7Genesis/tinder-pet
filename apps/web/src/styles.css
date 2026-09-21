@@ -232,6 +232,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .form fieldset { margin: var(--s4) 0; padding: var(--s3) var(--s4); border: 1px solid var(--line); border-radius: var(--radius-control); }
 .form legend { padding: 0 var(--s2); font-size: 14px; font-weight: 700; }
 
+/* Mensagem de erro de campo. */
+.field-error { margin: var(--s1) 0 0; font-size: 14px; font-weight: 600; color: var(--rose); }
+
 /* Conversas e chat. */
 .list-item { display: grid; gap: var(--s1); padding: var(--s4); margin: var(--s2) 0; color: inherit; text-decoration: none; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-control); }
 .list-item:hover { border-color: #d6c7b3; }
