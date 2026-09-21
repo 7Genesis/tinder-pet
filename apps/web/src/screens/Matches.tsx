@@ -1,4 +1,5 @@
 // Lista as conversas do usuário atual, uma por match.
+import { MessageCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { stageLabel } from '../domain/labels';
 import { useApp } from '../state/context';
@@ -14,7 +15,12 @@ export function Matches() {
   return (
     <section>
       <h1>Conversas</h1>
-      {mine.length === 0 && <p className="empty">Nenhuma conversa ainda. Ela abre depois do match.</p>}
+      {mine.length === 0 && (
+        <div className="empty">
+          <span className="empty-icon"><MessageCircle size={26} aria-hidden="true" /></span>
+          <p>Nenhuma conversa ainda. Ela abre depois do match.</p>
+        </div>
+      )}
       {mine.map((m) => {
         const pet = state.pets.find((p) => p.id === m.petId);
         const adopter = state.adopters.find((a) => a.id === m.adopterId);
@@ -27,7 +33,7 @@ export function Matches() {
           <Link key={m.id} className="list-item" to={`/matches/${m.id}`}>
             <strong>{title}</strong>
             <div className="muted">{subtitle}</div>
-            <div className="chip">{stageLabel[m.stage]}</div>
+            <div className="chip chip-stage">{stageLabel[m.stage]}</div>
           </Link>
         );
       })}

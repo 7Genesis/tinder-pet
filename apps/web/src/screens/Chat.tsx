@@ -1,10 +1,23 @@
 // Conversa prévia de um match, com painel do processo de adoção.
+import { ArrowLeft, Send } from 'lucide-react';
 import { useState, type FormEvent } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { currentTime } from '../domain/clock';
 import { stageLabel } from '../domain/labels';
+import type { MatchStage } from '../domain/types';
 import { canAdvance } from '../domain/matching';
 import { useApp } from '../state/context';
+
+const STEPS: MatchStage[] = ['conversa_previa', 'aprovado_para_adocao', 'adotado'];
+
+// Marca cada etapa do processo como concluída, atual ou pendente.
+function stepClass(step: MatchStage, current: MatchStage): string {
+  const at = STEPS.indexOf(current);
+  const index = STEPS.indexOf(step);
+  if (at === -1) return '';
+  if (index < at) return 'done';
+  return index === at ? 'current' : '';
+}
 
 export function Chat() {
   const { matchId } = useParams();
@@ -30,12 +43,19 @@ export function Chat() {
   };
 
   return (
-    <section>
-      <Link to="/matches" className="link-button">Voltar</Link>
-      <h1>{isOng ? adopter?.name : pet?.name}</h1>
+    <section className="chat">
+      <div className="chat-head">
+        <Link to="/matches" className="link-button" aria-label="Voltar"><ArrowLeft size={22} aria-hidden="true" /></Link>
+        <h1>{isOng ? adopter?.name : pet?.name}</h1>
+      </div>
       <p className="muted">{isOng ? `Sobre o pet ${pet?.name}` : `Conversa com a ONG sobre ${pet?.name}`}</p>
 
       <div className="stage-panel">
+        <ol className="stepper" aria-hidden="true">
+          {STEPS.map((step) => (
+            <li key={step} className={stepClass(step, match.stage)}>{stageLabel[step]}</li>
+          ))}
+        </ol>
         <p>Etapa: {stageLabel[match.stage]}</p>
         {isOng && canAdvance(match.stage, 'aprovado_para_adocao') && (
           <button type="button" onClick={() => dispatch({ type: 'setStage', matchId: match.id, stage: 'aprovado_para_adocao' })}>
@@ -62,10 +82,10 @@ export function Chat() {
         ))}
       </div>
 
-      <form className="form" onSubmit={send}>
-        <label htmlFor="mensagem">Mensagem</label>
-        <input id="mensagem" type="text" value={text} onChange={(e) => setText(e.target.value)} />
-        <button type="submit" className="primary">Enviar</button>
+      <form className="chat-form" onSubmit={send}>
+        <label htmlFor="mensagem" className="sr-only">Mensagem</label>
+        <input id="mensagem" type="text" placeholder="Escreva uma mensagem" value={text} onChange={(e) => setText(e.target.value)} />
+        <button type="submit" className="primary" aria-label="Enviar"><Send size={20} aria-hidden="true" /></button>
       </form>
     </section>
   );

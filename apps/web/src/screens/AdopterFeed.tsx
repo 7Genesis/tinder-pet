@@ -1,4 +1,5 @@
 // Feed do adotante: mostra um pet por vez, com swipe para curtir ou passar.
+import { PawPrint } from 'lucide-react';
 import { useState } from 'react';
 import { Detail } from '../components/Detail';
 import { MatchOverlay } from '../components/MatchOverlay';
@@ -54,7 +55,10 @@ export function AdopterFeed() {
           )}
         </>
       ) : (
-        <p className="empty">Não há pets novos por agora. Volte mais tarde.</p>
+        <div className="empty">
+          <span className="empty-icon"><PawPrint size={26} aria-hidden="true" /></span>
+          <p>Não há pets novos por agora. Volte mais tarde.</p>
+        </div>
       )}
       {fresh && (
         <MatchOverlay

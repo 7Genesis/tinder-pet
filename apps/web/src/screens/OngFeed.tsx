@@ -1,4 +1,5 @@
 // Feed da ONG: mostra um adotante por vez entre quem curtiu um pet da ONG.
+import { Users } from 'lucide-react';
 import { useState } from 'react';
 import { Detail } from '../components/Detail';
 import { MatchOverlay } from '../components/MatchOverlay';
@@ -52,7 +53,10 @@ export function OngFeed() {
           )}
         </>
       ) : (
-        <p className="empty">Nenhum adotante aguardando avaliação.</p>
+        <div className="empty">
+          <span className="empty-icon"><Users size={26} aria-hidden="true" /></span>
+          <p>Nenhum adotante aguardando avaliação.</p>
+        </div>
       )}
       {fresh && (
         <MatchOverlay

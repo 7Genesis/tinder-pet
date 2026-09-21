@@ -1,4 +1,4 @@
-// Card do adotante exibido no feed da ONG.
+// Card do adotante exibido no feed da ONG, com o nome sobre a foto.
 import { housingLabel } from '../domain/labels';
 import type { Adopter } from '../domain/types';
 
@@ -14,7 +14,7 @@ export function PersonCard({ adopter, petName }: Props) {
         <span className="photo-initial" aria-hidden="true">{adopter.name[0]}</span>
         <span className="chip card-corner">Curtiu o {petName}</span>
       </div>
-      <div className="card-body">
+      <div className="card-info">
         <h2>{adopter.name}, {adopter.age} anos</h2>
         <p className="muted">{adopter.city}. {housingLabel[adopter.housing]}</p>
         <div className="chips">
