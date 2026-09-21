@@ -139,7 +139,7 @@ Módulos da API: auth, usuarios, ongs, pets, descoberta, match, chat, moderacao.
 | Sprint | Período | Entregas |
 |---|---|---|
 | 1 | Set 2026 | Requisitos, épicos, features, este design, esqueleto do repositório, CI |
-| 2 | Out 2026 | Auth, ONGs e aprovação, cadastro de pets, perfil do adotante, feed com swipe |
+| 2 | Out 2026 | Protótipo web com dados fictícios (swipe, match, chat) publicado no GitHub Pages, depois auth, ONGs e cadastro de pets na API |
 | 3 | Nov 2026 | Match duplo, processo de adoção, chat em tempo real, notificações, denúncias |
 | 4 | Dez 2026 | Testes finais, LGPD completa, desempenho, estabilização e apresentação |
 

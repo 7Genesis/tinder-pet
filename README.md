@@ -16,6 +16,18 @@ docs         Documentação e design
 
 O design completo está em `docs/superpowers/specs/2026-09-20-tinder-pet-design.md`.
 
+## Protótipo
+
+O protótipo web roda sem backend, com dados fictícios, e fica em `apps/web`.
+
+```bash
+cd apps/web
+npm install
+npm run dev
+```
+
+Endereço publicado: https://7genesis.github.io/tinder-pet/
+
 ## Ambiente local
 
 Copie `.env.example` para `.env`, ajuste os valores e suba os serviços de apoio:
