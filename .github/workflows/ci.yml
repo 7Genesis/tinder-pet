@@ -20,7 +20,7 @@ jobs:
     name: Validar docker compose
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Criar .env a partir do exemplo
         run: cp .env.example .env
       - name: Validar docker-compose.yml
@@ -37,7 +37,7 @@ jobs:
       run:
         working-directory: apps/${{ matrix.app }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       # Cada app só é verificada depois que tiver um package.json.
       - name: Verificar se a app existe
@@ -49,7 +49,7 @@ jobs:
             echo "existe=false" >> "$GITHUB_OUTPUT"
           fi
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         if: steps.existe.outputs.existe == 'true'
         with:
           node-version: 22
