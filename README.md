@@ -4,6 +4,8 @@ Plataforma de adoção de pets para ONGs. O adotante desliza pets, a ONG desliza
 
 Demo publicada: https://7genesis.github.io/tinder-pet/
 
+Ideia original de Genesis Melo e José Marcos da Silva.
+
 ## O problema
 
 ONGs de proteção animal recebem muitos interessados, mas poucos estão prontos para adotar: falta tela de proteção em janelas, não há espaço para um cão grande, o temperamento do bicho não combina com a rotina. A triagem acontece em conversas soltas, uma a uma. Do lado de quem quer adotar, é difícil saber quais animais de quais ONGs realmente cabem na sua casa.
